@@ -1,0 +1,159 @@
+diff --git a/Makefile b/Makefile
+index 555aead..27d8e4a 100644
+--- a/Makefile
++++ b/Makefile
+@@ -182,6 +182,7 @@ UPROGS=\
+ 	_rm\
+ 	_sh\
+ 	_stressfs\
++	_test_syscalls\
+ 	_usertests\
+ 	_wc\
+ 	_zombie\
+diff --git a/syscall.c b/syscall.c
+index ee85261..0ce50b2 100644
+--- a/syscall.c
++++ b/syscall.c
+@@ -103,6 +103,8 @@ extern int sys_unlink(void);
+ extern int sys_wait(void);
+ extern int sys_write(void);
+ extern int sys_uptime(void);
++extern int sys_hello(void);
++extern int sys_getppid(void);
+ 
+ static int (*syscalls[])(void) = {
+ [SYS_fork]    sys_fork,
+@@ -126,6 +128,8 @@ static int (*syscalls[])(void) = {
+ [SYS_link]    sys_link,
+ [SYS_mkdir]   sys_mkdir,
+ [SYS_close]   sys_close,
++[SYS_hello]   sys_hello,
++[SYS_getppid] sys_getppid,
+ };
+ 
+ void
+diff --git a/syscall.h b/syscall.h
+index bc5f356..b055322 100644
+--- a/syscall.h
++++ b/syscall.h
+@@ -1,22 +1,24 @@
+ // System call numbers
+-#define SYS_fork    1
+-#define SYS_exit    2
+-#define SYS_wait    3
+-#define SYS_pipe    4
+-#define SYS_read    5
+-#define SYS_kill    6
+-#define SYS_exec    7
+-#define SYS_fstat   8
+-#define SYS_chdir   9
+-#define SYS_dup    10
+-#define SYS_getpid 11
+-#define SYS_sbrk   12
+-#define SYS_sleep  13
+-#define SYS_uptime 14
+-#define SYS_open   15
+-#define SYS_write  16
+-#define SYS_mknod  17
+-#define SYS_unlink 18
+-#define SYS_link   19
+-#define SYS_mkdir  20
+-#define SYS_close  21
++#define SYS_fork     1
++#define SYS_exit     2
++#define SYS_wait     3
++#define SYS_pipe     4
++#define SYS_read     5
++#define SYS_kill     6
++#define SYS_exec     7
++#define SYS_fstat    8
++#define SYS_chdir    9
++#define SYS_dup     10
++#define SYS_getpid  11
++#define SYS_sbrk    12
++#define SYS_sleep   13
++#define SYS_uptime  14
++#define SYS_open    15
++#define SYS_write   16
++#define SYS_mknod   17
++#define SYS_unlink  18
++#define SYS_link    19
++#define SYS_mkdir   20
++#define SYS_close   21
++#define SYS_hello   22
++#define SYS_getppid 23
+diff --git a/sysproc.c b/sysproc.c
+index 0686d29..ffb21a2 100644
+--- a/sysproc.c
++++ b/sysproc.c
+@@ -89,3 +89,12 @@ sys_uptime(void)
+   release(&tickslock);
+   return xticks;
+ }
++
++int sys_hello(void) {
++  cprintf("Hello, World!\n");
++  return 0;
++}
++
++int sys_getppid(void) {
++  return myproc()->parent ? myproc()->parent->pid : 0;
++}
+diff --git a/test_syscalls.c b/test_syscalls.c
+new file mode 100644
+index 0000000..221d236
+--- /dev/null
++++ b/test_syscalls.c
+@@ -0,0 +1,29 @@
++#include "types.h"
++#include "user.h"
++
++int main(void) {
++  printf(1, "[TEST] sys_hello\n");
++  hello();
++
++  printf(1, "[TEST] sys_getppid\n");
++  int pid = getpid();
++  int ppid = getppid();
++  printf(1, "PID: %d\nPPID: %d\n", pid, ppid);
++
++  int childPid = fork();
++
++  if(childPid < 0) {
++    printf(1, "Fork failed\n");
++  } else if(childPid == 0) {
++    printf(1, "[CHILD] PID: %d | PPID: %d\n", getpid(), getppid());
++
++    if(getppid() == pid)
++      printf(1, "[CHILD] Correct PPID\n");
++
++    exit();
++  } else {
++    wait();
++  }
++
++  exit();
++}
+diff --git a/user.h b/user.h
+index 4f99c52..c7ccb5c 100644
+--- a/user.h
++++ b/user.h
+@@ -23,6 +23,8 @@ int getpid(void);
+ char* sbrk(int);
+ int sleep(int);
+ int uptime(void);
++int hello(void);
++int getppid(void);
+ 
+ // ulib.c
+ int stat(const char*, struct stat*);
+diff --git a/usys.S b/usys.S
+index 8bfd8a1..acab63b 100644
+--- a/usys.S
++++ b/usys.S
+@@ -29,3 +29,5 @@ SYSCALL(getpid)
+ SYSCALL(sbrk)
+ SYSCALL(sleep)
+ SYSCALL(uptime)
++SYSCALL(hello)
++SYSCALL(getppid)

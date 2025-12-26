@@ -1,0 +1,28 @@
+@startuml diagram-przypadkow-uzycia
+title TPLab02 - Diagram przypadków użycia
+
+left to right direction
+
+actor "Użytkownik" as User
+
+rectangle "Faktury" {
+  usecase UC_IssueInvoice as "Wystaw Fakturę"
+  usecase UC_AddCustomer as "Dodaj Klienta"
+  usecase UC_AddItem as "Dodaj Pozycję"
+  usecase UC_ViewInvoices as "Zobacz Faktury"
+  usecase UC_ListItems as "Lista Pozycji"
+  usecase UC_ListCustomers as "Lista Klientów"
+}
+
+User --> UC_IssueInvoice
+User --> UC_AddCustomer
+User --> UC_AddItem
+User --> UC_ViewInvoices
+User --> UC_ListItems
+User --> UC_ListCustomers
+
+UC_IssueInvoice .> UC_ListCustomers : <<includes>>
+UC_IssueInvoice .> UC_ListItems : <<includes>>
+UC_IssueInvoice .> UC_ViewInvoices : <<extends>>
+
+@enduml

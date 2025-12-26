@@ -1,0 +1,4 @@
+PMD:                mvn pmd:check
+Checkstyle:         mvn checkstyle:check
+HTML project info:  mvn site
+UML diagram link:   https://app.diagrams.net/#LTPLab01#%7B%22pageId%22%3A%22xbvqXXJTMt6wPztxgYxg%22%7D

@@ -1,0 +1,36 @@
+1. Przypadek Użycia: Dodaj Klienta
+    Nazwa: Dodanie nowego klienta.
+    Aktor: Użytkownik. 
+    Cel: Zapisanie danych nowego klienta w systemie.
+
+Scenariusz Główny (Pomyślny):
+    1. Użytkownik wybiera opcję "Dodaj Klienta".
+    2. System prosi o podanie nazwy klienta.
+    3. Użytkownik wprowadza nazwę.
+    4. System prosi o podanie numeru NIP klienta.
+    5. Użytkownik wprowadza NIP.
+    6. System waliduje dane.
+    7. System zapisuje nowego klienta w bazie danych.
+    8. System wyświetla potwierdzenie.
+
+Scenariusz Alternatywny (Niepoprawne dane):
+    6a. System wykrywa, że podana nazwa lub NIP są puste.
+    6b. System wyświetla komunikat błędu.
+    6c. System wraca do kroku 2.
+
+2. Przypadek Użycia: Dodaj Artykuł
+    Nazwa: Dodanie nowego artykułu (towaru lub usługi).
+    Aktor: Użytkownik.
+    Cel: Zapisanie nowego artykułu w systemie.
+
+Scenariusz Główny (Pomyślny):
+    1. Użytkownik wybiera opcję "Dodaj Artykuł".
+    2. System prosi o podanie nazwy artykułu.
+    3. Użytkownik wprowadza nazwę.
+    4. System zapisuje nowy artykuł.
+    5. System wyświetla potwierdzenie.
+
+Scenariusz Alternatywny (Pusta nazwa):
+    3a. Użytkownik nie podaje żadnej nazwy (wciska Enter).
+    3b. System wyświetla komunikat błędu.
+    3c. System wraca do kroku 2.

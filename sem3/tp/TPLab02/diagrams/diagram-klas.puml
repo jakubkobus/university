@@ -1,0 +1,193 @@
+@startuml diagram-klas
+title TPLab02 - Diagram klas
+
+package "pl.edu.pwr.tplab.faktura.model" {
+  class Invoice {
+    - int id
+    - String number
+    - Customer customer
+    - List<InvoiceLine> lines
+    + Invoice(Customer)
+    + void addLine(Item, int, double)
+    + double calculateTotalSum()
+    + List<InvoiceLine> getLines()
+    + Customer getCustomer()
+    + String getNumber()
+    + void setNumber(String)
+    + void setId(int)
+    + int getId()
+  }
+
+  class InvoiceLine {
+    - Item item
+    - int quantity
+    - double price
+    + InvoiceLine(Item, int, double)
+    + double calculateValue()
+    + Item getItem()
+    + int getQuantity()
+    + double getPrice()
+  }
+
+  class Item {
+    - int id
+    - String name
+    + int getId()
+    + void setId(int)
+    + String getName()
+    + void setName(String)
+  }
+
+  class Customer {
+    - int id
+    - String name
+    - String NIP
+    + int getId()
+    + void setId(int)
+    + String getName()
+    + void setName(String)
+    + String getNIP()
+    + void setNIP(String)
+  }
+}
+
+package "pl.edu.pwr.tplab.faktura.repository" {
+  interface InvoiceRepository {
+    + Invoice save(Invoice)
+    + Optional<Invoice> findById(int)
+    + List<Invoice> findAll()
+    + List<Invoice> findByCustomerId(int)
+  }
+
+  interface ItemRepository {
+    + Item save(Item)
+    + Optional<Item> findById(int)
+    + List<Item> findAll()
+  }
+
+  interface CustomerRepository {
+    + Customer save(Customer)
+    + Optional<Customer> findById(int)
+    + List<Customer> findAll()
+  }
+}
+
+package "pl.edu.pwr.tplab.faktura.repository.impl" {
+  class MySqlInvoiceRepository {
+    - Connection connection
+    + MySqlInvoiceRepository(Connection)
+    + Invoice save(Invoice)
+    + Optional<Invoice> findById(int)
+    + List<Invoice> findByCustomerId(int)
+    + List<Invoice> findAll()
+  }
+
+  class MySqlItemRepository {
+    - Connection connection
+    + MySqlItemRepository(Connection)
+    + Item save(Item)
+    + Optional<Item> findById(int)
+    + List<Item> findAll()
+  }
+
+  class MySqlCustomerRepository {
+    - Connection connection
+    + MySqlCustomerRepository(Connection)
+    + Customer save(Customer)
+    + Optional<Customer> findById(int)
+    + List<Customer> findAll()
+  }
+}
+
+package "pl.edu.pwr.tplab.faktura.service" {
+  class InvoiceService {
+    - InvoiceRepository invoiceRepository
+    - CustomerRepository customerRepository
+    - ItemRepository itemRepository
+    + InvoiceService(InvoiceRepository, CustomerRepository, ItemRepository)
+    + Invoice issueInvoice(int, List<LineItemDTO>)
+    + List<Invoice> getInvoicesByCustomerId(int)
+    + Invoice getInvoiceById(int)
+    + Optional<Invoice> getInvoiceByIdOptional(int)
+  }
+
+  class CustomerService {
+    - CustomerRepository customerRepository
+    + CustomerService(CustomerRepository)
+    + Customer addCustomer(String, String)
+    + List<Customer> getAllCustomers()
+  }
+
+  class ItemService {
+    - ItemRepository itemRepository
+    + ItemService(ItemRepository)
+    + Item addItem(String)
+    + List<Item> getAllItems()
+  }
+
+  class LineItemDTO <<record>> {
+    + int itemId
+    + int quantity
+    + double price
+  }
+}
+
+package "pl.edu.pwr.tplab.faktura.util" {
+  class DatabaseConnector {
+    - static String DB_URL
+    - static String USER
+    - static String PASS
+    - static Connection connectionInstance
+    + static Connection getConnection()
+    + static void closeConnection()
+  }
+}
+
+package "pl.edu.pwr.tplab.faktura.validator" {
+  class CustomerValidator {
+    + void validateForCreate(Customer)
+  }
+
+  class ItemValidator {
+    + void validateForCreate(Item)
+  }
+
+  class InvoiceValidator {
+    + void validateForIssue(int, List<LineItemDTO>)
+  }
+}
+
+package "pl.edu.pwr.tplab.faktura" {
+  class Main {
+    + static void main(String[] args)
+  }
+}
+
+Invoice "1" o-- "*" InvoiceLine : contains
+InvoiceLine --> Item : references
+Invoice --> Customer : references
+
+MySqlInvoiceRepository ..|> InvoiceRepository
+MySqlItemRepository ..|> ItemRepository
+MySqlCustomerRepository ..|> CustomerRepository
+
+InvoiceService ..> InvoiceRepository : uses
+InvoiceService ..> CustomerRepository : uses
+InvoiceService ..> ItemRepository : uses
+InvoiceService ..> LineItemDTO : uses
+InvoiceService ..> CustomerValidator : uses
+InvoiceService ..> ItemValidator : uses
+InvoiceService ..> InvoiceValidator : uses
+CustomerService ..> CustomerRepository : uses
+CustomerService ..> CustomerValidator : uses
+ItemService ..> ItemRepository : uses
+ItemService ..> ItemValidator : uses
+Main ..> InvoiceService : creates
+Main ..> CustomerService : creates
+Main ..> ItemService : creates
+
+MySqlInvoiceRepository ..> DatabaseConnector : uses
+MySqlItemRepository ..> DatabaseConnector : uses
+MySqlCustomerRepository ..> DatabaseConnector : uses
+
+@enduml
