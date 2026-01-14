@@ -1,3 +1,3 @@
 # Projekt gry w Go
 ---
-> [Repository](https://github.com/jakubkobus/university-java-go)
+> [Repository](https://github.com/jakubkobus/university-java-go/tree/iteration2)
