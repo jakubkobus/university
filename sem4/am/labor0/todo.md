@@ -1,0 +1,1 @@
+[ ] Przygotuj krótkie sprawozdanie z opisem uzyskanych wyników dla każdych danych. Przyjrzyj się uzyskanym cyklom i wiedząc że jest to przestrzeń euklidesowa zastanów się co można w łatwy sposób poprawić w uzyskanych rozwiązaniach (czy w optymalnej pętli krawędzie mogą się krzyżować?
