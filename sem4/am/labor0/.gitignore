@@ -1,8 +1,12 @@
-
+# compiled files
 *
 !*/
 !*.*
 
+# python
+.venv/
+
+# other
 *.png
 *.txt
-.venv
+todo.md

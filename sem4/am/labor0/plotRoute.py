@@ -31,10 +31,8 @@ def plotRoute(filepath: str) -> None:
     plt.grid(True, linestyle="--", alpha=0.5)
     plt.legend()
 
-    plt.savefig("bestRoute.png", dpi=300)
-
-    plt.show()
+    plt.savefig("best.png", dpi=300)
 
 
 if __name__ == "__main__":
-    plotRoute("bestRoute.txt")
+    plotRoute("best.txt")

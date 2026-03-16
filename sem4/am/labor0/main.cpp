@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
   printf("Srednia z minumum dla kazdych 50 kolejnych losowan: %.2lf\n", avgGroup50);
   printf("Minimalna wartosc dla 1000 losowan: %d\n", bestLen);
 
-  tsp::saveRoute(best, "bestRoute.txt");
+  tsp::saveRoute(best, "best.txt");
 
   return 0;
 }
