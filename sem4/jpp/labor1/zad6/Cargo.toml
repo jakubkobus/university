@@ -1,0 +1,11 @@
+[package]
+name = "wrapper_rust"
+version = "0.1.0"
+edition = "2021"
+
+[lints.rust]
+non_snake_case = "allow"
+
+[features]
+default = []
+dynamic = []

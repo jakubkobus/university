@@ -1,0 +1,11 @@
+[package]
+name = "my_lib_rust"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["rlib", "staticlib", "cdylib"]
+
+[lints.rust]
+non_snake_case = "allow"
+non_camel_case_types = "allow"
