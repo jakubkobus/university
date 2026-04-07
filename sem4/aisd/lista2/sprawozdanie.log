@@ -1,0 +1,543 @@
+
+➜  aisd git:(main) ✗ # Jakub Kobus 283969
+➜  aisd git:(main) ✗ svn export https://repo.cs.pwr.edu.pl/283969-dir/mk1/lista2
+A    lista2
+A    lista2/zad1
+A    lista2/zad1/sort
+A    lista2/zad2
+A    lista2/zad2/plots
+A    lista2/zad3
+A    lista2/zad3/plots
+A    lista2/zad4
+A    lista2/zad4/plots
+A    lista2/zad4/matrixSearch.hpp
+A    lista2/zad1/generator.cpp
+A    lista2/zad1/hybrid_sort.cpp
+A    lista2/zad1/insertion_sort.cpp
+A    lista2/zad1/quick_sort.cpp
+A    lista2/zad1/sort/hybrid.hpp
+A    lista2/zad1/sort/insertion.hpp
+A    lista2/zad1/sort/quick.hpp
+A    lista2/zad1/sort/result.hpp
+A    lista2/zad1/sort/util.hpp
+A    lista2/zad2/findThreshold.cpp
+A    lista2/zad2/main.cpp
+A    lista2/zad2/plot.py
+A    lista2/zad4/plots/plot_rect.png
+A    lista2/zad4/test.cpp
+A    lista2/zad2/plots/plot_k1.png
+A    lista2/zad2/plots/plot_k10.png
+A    lista2/zad2/plots/plot_k100.png
+A    lista2/zad2/runTests.sh
+A    lista2/zad2/threshold.sh
+A    lista2/zad3/main.cpp
+A    lista2/zad3/mergeSort.hpp
+A    lista2/zad3/mySort.hpp
+A    lista2/zad3/plot.py
+A    lista2/zad3/plots/plot_k1.png
+A    lista2/zad3/plots/plot_k10.png
+A    lista2/zad3/plots/plot_k100.png
+A    lista2/zad4/main.cpp
+A    lista2/zad4/plot.py
+A    lista2/zad4/plots/plot_square.png
+Exported revision 2.
+➜  aisd git:(main) ✗ cd lista2
+➜  lista2 git:(main) ✗ cd zad1
+➜  zad1 git:(main) ✗ g++ -Wall -Wextra generator.cpp -o generator
+➜  zad1 git:(main) ✗ g++ -Wall -Wextra quick_sort.cpp -o quick_sort
+➜  zad1 git:(main) ✗ g++ -Wall -Wextra insertion_sort.cpp -o insertion_sort
+➜  zad1 git:(main) ✗ g++ -Wall -Wextra hybrid_sort.cpp -o hybrid_sort
+➜  zad1 git:(main) ✗ ./generator 10 asc
+10
+3 4 6 7 11 11 13 14 17 19
+➜  zad1 git:(main) ✗ ./generator 10 rand | ./insertion_sort
+Original array:
+[ 03 02 19 06 19 18 11 11 07 13 ]
+[ 02 03 19 06 19 18 11 11 07 13 ]
+[ 02 03 19 06 19 18 11 11 07 13 ]
+[ 02 03 06 19 19 18 11 11 07 13 ]
+[ 02 03 06 19 19 18 11 11 07 13 ]
+[ 02 03 06 18 19 19 11 11 07 13 ]
+[ 02 03 06 11 18 19 19 11 07 13 ]
+[ 02 03 06 11 11 18 19 19 07 13 ]
+[ 02 03 06 07 11 11 18 19 19 13 ]
+[ 02 03 06 07 11 11 13 18 19 19 ]
+Original array:
+[ 03 02 19 06 19 18 11 11 07 13 ]
+Sorted array:
+[ 02 03 06 07 11 11 13 18 19 19 ]
+Sorted: true
+Comparisons: 26
+Swaps: 18
+➜  zad1 git:(main) ✗ ./generator 10 rand | ./quick_sort
+Original array:
+[ 03 16 04 02 10 19 07 08 04 05 ]
+[ 03 04 02 04 05 19 07 08 16 10 ]
+[ 03 02 04 04 05 19 07 08 16 10 ]
+[ 02 03 04 04 05 19 07 08 16 10 ]
+[ 02 03 04 04 05 07 08 10 16 19 ]
+[ 02 03 04 04 05 07 08 10 16 19 ]
+[ 02 03 04 04 05 07 08 10 16 19 ]
+Original array:
+[ 03 16 04 02 10 19 07 08 04 05 ]
+Sorted array:
+[ 02 03 04 04 05 07 08 10 16 19 ]
+Sorted: true
+Comparisons: 19
+Swaps: 16
+➜  zad1 git:(main) ✗ ./generator 10 rand | ./hybrid_sort
+Original array:
+[ 10 11 09 19 06 17 03 15 18 04 ]
+Switching to insertion sort for subarray [0, 9]
+[ 10 11 09 19 06 17 03 15 18 04 ]
+[ 09 10 11 19 06 17 03 15 18 04 ]
+[ 09 10 11 19 06 17 03 15 18 04 ]
+[ 06 09 10 11 19 17 03 15 18 04 ]
+[ 06 09 10 11 17 19 03 15 18 04 ]
+[ 03 06 09 10 11 17 19 15 18 04 ]
+[ 03 06 09 10 11 15 17 19 18 04 ]
+[ 03 06 09 10 11 15 17 18 19 04 ]
+[ 03 04 06 09 10 11 15 17 18 19 ]
+Original array:
+[ 10 11 09 19 06 17 03 15 18 04 ]
+Sorted array:
+[ 03 04 06 09 10 11 15 17 18 19 ]
+Sorted: true
+Comparisons: 30
+Swaps: 24
+➜  zad1 git:(main) ✗ ./generator 20 asc | ./insertion_sort
+Original array:
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+Original array:
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+Sorted array:
+[ 01 03 03 07 07 09 12 13 16 16 17 21 21 25 26 28 31 34 36 36 ]
+Sorted: true
+Comparisons: 19
+Swaps: 0
+➜  zad1 git:(main) ✗ ./generator 20 asc | ./quick_sort
+Original array:
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+Original array:
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+Sorted array:
+[ 00 03 06 09 13 14 15 16 17 19 21 24 25 26 31 33 36 36 37 37 ]
+Sorted: true
+Comparisons: 156
+Swaps: 171
+➜  zad1 git:(main) ✗ ./generator 20 asc | ./hybrid_sort
+Original array:
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Using quicksort for subarray [0, 19]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Using quicksort for subarray [0, 17]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Using quicksort for subarray [0, 16]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Using quicksort for subarray [0, 15]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Using quicksort for subarray [0, 13]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Using quicksort for subarray [0, 12]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Using quicksort for subarray [0, 11]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Using quicksort for subarray [0, 10]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Switching to insertion sort for subarray [0, 9]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Original array:
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Sorted array:
+[ 02 02 03 04 05 08 10 11 15 19 22 25 26 27 28 28 30 33 39 39 ]
+Sorted: true
+Comparisons: 122
+Swaps: 119
+➜  zad1 git:(main) ✗ ./generator 30 desc | ./insertion_sort
+Original array:
+[ 58 58 58 56 54 51 49 47 47 44 41 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 58 58 58 56 54 51 49 47 47 44 41 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 58 58 58 56 54 51 49 47 47 44 41 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 56 58 58 58 54 51 49 47 47 44 41 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 54 56 58 58 58 51 49 47 47 44 41 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 51 54 56 58 58 58 49 47 47 44 41 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 49 51 54 56 58 58 58 47 47 44 41 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 47 49 51 54 56 58 58 58 47 44 41 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 47 47 49 51 54 56 58 58 58 44 41 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 44 47 47 49 51 54 56 58 58 58 41 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 41 44 47 47 49 51 54 56 58 58 58 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 40 41 44 47 47 49 51 54 56 58 58 58 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 39 40 41 44 47 47 49 51 54 56 58 58 58 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 38 39 40 41 44 47 47 49 51 54 56 58 58 58 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 26 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 18 17 12 08 07 06 06 04 04 03 03 ]
+[ 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 17 12 08 07 06 06 04 04 03 03 ]
+[ 17 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 12 08 07 06 06 04 04 03 03 ]
+[ 12 17 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 08 07 06 06 04 04 03 03 ]
+[ 08 12 17 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 07 06 06 04 04 03 03 ]
+[ 07 08 12 17 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 06 06 04 04 03 03 ]
+[ 06 07 08 12 17 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 06 04 04 03 03 ]
+[ 06 06 07 08 12 17 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 04 04 03 03 ]
+[ 04 06 06 07 08 12 17 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 04 03 03 ]
+[ 04 04 06 06 07 08 12 17 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 03 03 ]
+[ 03 04 04 06 06 07 08 12 17 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 03 ]
+[ 03 03 04 04 06 06 07 08 12 17 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 ]
+Original array:
+[ 58 58 58 56 54 51 49 47 47 44 41 40 39 38 34 29 28 27 26 18 17 12 08 07 06 06 04 04 03 03 ]
+Sorted array:
+[ 03 03 04 04 06 06 07 08 12 17 18 26 27 28 29 34 38 39 40 41 44 47 47 49 51 54 56 58 58 58 ]
+Sorted: true
+Comparisons: 434
+Swaps: 428
+➜  zad1 git:(main) ✗ ./generator 30 desc | ./quick_sort
+Original array:
+[ 57 55 53 52 51 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 08 06 02 02 00 ]
+[ 00 55 53 52 51 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 08 06 02 02 57 ]
+[ 00 55 53 52 51 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 08 06 02 02 57 ]
+[ 00 02 53 52 51 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 08 06 02 55 57 ]
+[ 00 02 53 52 51 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 08 06 02 55 57 ]
+[ 00 02 02 52 51 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 08 06 53 55 57 ]
+[ 00 02 02 52 51 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 08 06 53 55 57 ]
+[ 00 02 02 06 51 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 08 52 53 55 57 ]
+[ 00 02 02 06 51 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 08 52 53 55 57 ]
+[ 00 02 02 06 08 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 51 52 53 55 57 ]
+[ 00 02 02 06 08 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 39 37 37 31 30 30 27 27 22 18 17 17 15 13 42 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 39 37 37 31 30 30 27 27 22 18 17 17 15 13 42 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 13 37 37 31 30 30 27 27 22 18 17 17 15 39 42 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 13 37 37 31 30 30 27 27 22 18 17 17 15 39 42 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 13 15 37 31 30 30 27 27 22 18 17 17 37 39 42 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 13 15 31 30 30 27 27 22 18 17 17 37 37 39 42 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 13 15 17 30 30 27 27 22 18 17 31 37 37 39 42 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 13 15 17 30 30 27 27 22 18 17 31 37 37 39 42 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 13 15 17 17 30 27 27 22 18 30 31 37 37 39 42 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 13 15 17 17 27 27 22 18 30 30 31 37 37 39 42 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 13 15 17 17 18 27 22 27 30 30 31 37 37 39 42 43 47 51 52 53 55 57 ]
+[ 00 02 02 06 08 09 09 09 13 15 17 17 18 22 27 27 30 30 31 37 37 39 42 43 47 51 52 53 55 57 ]
+Original array:
+[ 57 55 53 52 51 47 43 42 39 37 37 31 30 30 27 27 22 18 17 17 15 13 09 09 09 08 06 02 02 00 ]
+Sorted array:
+[ 00 02 02 06 08 09 09 09 13 15 17 17 18 22 27 27 30 30 31 37 37 39 42 43 47 51 52 53 55 57 ]
+Sorted: true
+Comparisons: 421
+Swaps: 227
+➜  zad1 git:(main) ✗ ./generator 30 desc | ./hybrid_sort
+Original array:
+[ 59 59 56 53 52 51 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 10 10 09 08 00 ]
+Using quicksort for subarray [0, 29]
+[ 00 59 56 53 52 51 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 10 10 09 08 59 ]
+Using quicksort for subarray [1, 29]
+[ 00 56 53 52 51 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 10 10 09 08 59 59 ]
+Using quicksort for subarray [1, 27]
+[ 00 08 53 52 51 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 10 10 09 56 59 59 ]
+Using quicksort for subarray [2, 27]
+[ 00 08 53 52 51 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 10 10 09 56 59 59 ]
+Using quicksort for subarray [2, 26]
+[ 00 08 09 52 51 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 10 10 53 56 59 59 ]
+Using quicksort for subarray [3, 26]
+[ 00 08 09 52 51 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 10 10 53 56 59 59 ]
+Using quicksort for subarray [3, 25]
+[ 00 08 09 10 51 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 10 52 53 56 59 59 ]
+Using quicksort for subarray [4, 25]
+[ 00 08 09 10 51 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 10 52 53 56 59 59 ]
+Using quicksort for subarray [4, 24]
+[ 00 08 09 10 10 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 51 52 53 56 59 59 ]
+Using quicksort for subarray [5, 24]
+[ 00 08 09 10 10 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 51 52 53 56 59 59 ]
+Using quicksort for subarray [5, 23]
+[ 00 08 09 10 10 13 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 48 51 52 53 56 59 59 ]
+Using quicksort for subarray [6, 23]
+[ 00 08 09 10 10 13 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 48 51 52 53 56 59 59 ]
+Using quicksort for subarray [6, 22]
+[ 00 08 09 10 10 13 15 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 44 48 51 52 53 56 59 59 ]
+Using quicksort for subarray [7, 22]
+[ 00 08 09 10 10 13 15 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 44 48 51 52 53 56 59 59 ]
+Using quicksort for subarray [7, 21]
+[ 00 08 09 10 10 13 15 17 37 36 36 35 33 33 33 31 31 30 25 17 17 43 44 48 51 52 53 56 59 59 ]
+Using quicksort for subarray [8, 21]
+[ 00 08 09 10 10 13 15 17 37 36 36 35 33 33 33 31 31 30 25 17 17 43 44 48 51 52 53 56 59 59 ]
+Using quicksort for subarray [8, 20]
+[ 00 08 09 10 10 13 15 17 17 36 36 35 33 33 33 31 31 30 25 17 37 43 44 48 51 52 53 56 59 59 ]
+Using quicksort for subarray [9, 20]
+[ 00 08 09 10 10 13 15 17 17 36 36 35 33 33 33 31 31 30 25 17 37 43 44 48 51 52 53 56 59 59 ]
+Using quicksort for subarray [9, 19]
+[ 00 08 09 10 10 13 15 17 17 17 36 35 33 33 33 31 31 30 25 36 37 43 44 48 51 52 53 56 59 59 ]
+Switching to insertion sort for subarray [10, 19]
+[ 00 08 09 10 10 13 15 17 17 17 35 36 33 33 33 31 31 30 25 36 37 43 44 48 51 52 53 56 59 59 ]
+[ 00 08 09 10 10 13 15 17 17 17 33 35 36 33 33 31 31 30 25 36 37 43 44 48 51 52 53 56 59 59 ]
+[ 00 08 09 10 10 13 15 17 17 17 33 33 35 36 33 31 31 30 25 36 37 43 44 48 51 52 53 56 59 59 ]
+[ 00 08 09 10 10 13 15 17 17 17 33 33 33 35 36 31 31 30 25 36 37 43 44 48 51 52 53 56 59 59 ]
+[ 00 08 09 10 10 13 15 17 17 17 31 33 33 33 35 36 31 30 25 36 37 43 44 48 51 52 53 56 59 59 ]
+[ 00 08 09 10 10 13 15 17 17 17 31 31 33 33 33 35 36 30 25 36 37 43 44 48 51 52 53 56 59 59 ]
+[ 00 08 09 10 10 13 15 17 17 17 30 31 31 33 33 33 35 36 25 36 37 43 44 48 51 52 53 56 59 59 ]
+[ 00 08 09 10 10 13 15 17 17 17 25 30 31 31 33 33 33 35 36 36 37 43 44 48 51 52 53 56 59 59 ]
+[ 00 08 09 10 10 13 15 17 17 17 25 30 31 31 33 33 33 35 36 36 37 43 44 48 51 52 53 56 59 59 ]
+Original array:
+[ 59 59 56 53 52 51 48 44 43 37 36 36 35 33 33 33 31 31 30 25 17 17 17 15 13 10 10 09 08 00 ]
+Sorted array:
+[ 00 08 09 10 10 13 15 17 17 17 25 30 31 31 33 33 33 35 36 36 37 43 44 48 51 52 53 56 59 59 ]
+Sorted: true
+Comparisons: 399
+Swaps: 222
+➜  zad1 git:(main) ✗ cd ..
+➜  lista2 git:(main) ✗ cd zad2
+➜  zad2 git:(main) ✗ g++ -Wall -Wextra findThreshold.cpp -o findThreshold -O3
+➜  zad2 git:(main) ✗ ./threshold.sh
+
+Iteration 1
+bestThreshold=27
+
+real	0m34,347s
+user	0m34,109s
+sys	0m0,012s
+
+Iteration 2
+bestThreshold=52
+
+real	0m34,751s
+user	0m34,633s
+sys	0m0,005s
+
+Iteration 3
+bestThreshold=13
+
+real	0m34,751s
+user	0m34,634s
+sys	0m0,008s
+
+Iteration 4
+bestThreshold=56
+
+real	0m34,953s
+user	0m34,590s
+sys	0m0,010s
+
+Iteration 5
+bestThreshold=50
+
+real	0m33,867s
+user	0m33,668s
+sys	0m0,005s
+➜  zad2 git:(main) ✗ # Dla duzych n wybralem threshold=30
+➜  zad2 git:(main) ✗ # generowanie wynikow trwa bardzo dlugo, wiec zaprezentuje wykresy
+➜  zad2 git:(main) ✗ cd ..
+➜  lista2 git:(main) ✗ cd zad3
+➜  zad3 git:(main) ✗ g++ -Wall -Wextra main.cpp -o main -O3
+➜  zad3 git:(main) ✗ ./main
+Testing k=1...
+Testing k=10...
+Testing k=100...
+➜  zad3 git:(main) ✗ head results.csv
+algo,k,n,c,s,c_n,s_n
+MergeSort,1,10,19,68,1.9,6.8
+MySort,1,10,25,52,2.5,5.2
+MergeSort,1,20,59,176,2.95,8.8
+MySort,1,20,70,134,3.5,6.7
+MergeSort,1,30,112,296,3.73333,9.86667
+MySort,1,30,129,264,4.3,8.8
+MergeSort,1,40,169,432,4.225,10.8
+MySort,1,40,202,380,5.05,9.5
+MergeSort,1,50,213,572,4.26,11.44
+➜  zad3 git:(main) ✗ .venv/bin/python plot.py
+➜  zad3 git:(main) ✗ cd ..
+➜  lista2 git:(main) ✗ cd zad4
+➜  zad4 git:(main) ✗ g++ -Wall -Wextra main.cpp -o main
+➜  zad4 git:(main) ✗ ./main
+Dimensions:   1000 x 1000   | Size: 1000000 elements
+  Binary Search:      79      comparisons
+  Saddleback:         43      comparisons
+  Winner:             Saddleback Search
+  hybridSort choice:  saddleback (43 comparisons)
+
+Dimensions:    100 x 10000  | Size: 1000000 elements
+  Binary Search:      51      comparisons
+  Saddleback:         17793   comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (51 comparisons)
+
+Dimensions:     10 x 100000 | Size: 1000000 elements
+  Binary Search:      29      comparisons
+  Saddleback:         65647   comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (29 comparisons)
+
+Dimensions:      2 x 500000 | Size: 1000000 elements
+  Binary Search:      71      comparisons
+  Saddleback:         161225  comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (71 comparisons)
+
+Dimensions: 500000 x 2      | Size: 1000000 elements
+  Binary Search:      61      comparisons
+  Saddleback:         754637  comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (61 comparisons)
+
+Dimensions: 100000 x 10     | Size: 1000000 elements
+  Binary Search:      99      comparisons
+  Saddleback:         5051    comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (99 comparisons)
+
+Dimensions:  10000 x 100    | Size: 1000000 elements
+  Binary Search:      133     comparisons
+  Saddleback:         1045    comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (133 comparisons)
+
+➜  zad4 git:(main) ✗ ./main
+Dimensions:   1000 x 1000   | Size: 1000000 elements
+  Binary Search:      4639    comparisons
+  Saddleback:         463     comparisons
+  Winner:             Saddleback Search
+  hybridSort choice:  saddleback (463 comparisons)
+
+Dimensions:    100 x 10000  | Size: 1000000 elements
+  Binary Search:      109     comparisons
+  Saddleback:         4785    comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (109 comparisons)
+
+Dimensions:     10 x 100000 | Size: 1000000 elements
+  Binary Search:      61      comparisons
+  Saddleback:         140467  comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (61 comparisons)
+
+Dimensions:      2 x 500000 | Size: 1000000 elements
+  Binary Search:      31      comparisons
+  Saddleback:         856649  comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (31 comparisons)
+
+Dimensions: 500000 x 2      | Size: 1000000 elements
+  Binary Search:      67      comparisons
+  Saddleback:         735317  comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (67 comparisons)
+
+Dimensions: 100000 x 10     | Size: 1000000 elements
+  Binary Search:      125     comparisons
+  Saddleback:         16031   comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (125 comparisons)
+
+Dimensions:  10000 x 100    | Size: 1000000 elements
+  Binary Search:      23      comparisons
+  Saddleback:         14669   comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (23 comparisons)
+
+➜  zad4 git:(main) ✗ ./main
+Dimensions:   1000 x 1000   | Size: 1000000 elements
+  Binary Search:      19      comparisons
+  Saddleback:         469     comparisons
+  Winner:             Binary Search
+  hybridSort choice:  saddleback (469 comparisons)
+
+Dimensions:    100 x 10000  | Size: 1000000 elements
+  Binary Search:      105     comparisons
+  Saddleback:         6331    comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (105 comparisons)
+
+Dimensions:     10 x 100000 | Size: 1000000 elements
+  Binary Search:      27      comparisons
+  Saddleback:         118155  comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (27 comparisons)
+
+Dimensions:      2 x 500000 | Size: 1000000 elements
+  Binary Search:      37      comparisons
+  Saddleback:         630249  comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (37 comparisons)
+
+Dimensions: 500000 x 2      | Size: 1000000 elements
+  Binary Search:      35      comparisons
+  Saddleback:         385391  comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (35 comparisons)
+
+Dimensions: 100000 x 10     | Size: 1000000 elements
+  Binary Search:      65      comparisons
+  Saddleback:         41127   comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (65 comparisons)
+
+Dimensions:  10000 x 100    | Size: 1000000 elements
+  Binary Search:      79      comparisons
+  Saddleback:         5739    comparisons
+  Winner:             Binary Search
+  hybridSort choice:  binary (79 comparisons)
+
+➜  zad4 git:(main) ✗ g++ -Wall -Wextra test.cpp -o test -O3
+➜  zad4 git:(main) ✗ ./test
+Rectangles k=50...
+Squares k=50...
+➜  zad4 git:(main) ✗ head results.csv
+shape,m,n,algo,comparisons
+Rectangle,2,500000,Binary,44
+Rectangle,2,500000,Saddleback,428197
+Rectangle,2,500000,Hybrid,44
+Rectangle,10,100000,Binary,76
+Rectangle,10,100000,Saddleback,95028
+Rectangle,10,100000,Hybrid,76
+Rectangle,100,10000,Binary,89
+Rectangle,100,10000,Saddleback,9449
+Rectangle,100,10000,Hybrid,89
+➜  zad4 git:(main) ✗ .venv/bin/python plot.py
+➜  zad4 git:(main) ✗ # Zlozonosc algorytmu binarySearch to O(min(m, n) * log2(max(m, n)))
+➜  zad4 git:(main) ✗ # Zlozonosc algorytmu saddlebackSearch to O(m + n)
+➜  zad4 git:(main) ✗ tmux capture-pane -p -S'-' -E'-' -J > sprawozdanie
