@@ -38,10 +38,7 @@ def main():
             os.path.join(base_dir, "zad3", "target", "release", "libmy_lib_rust.so")
         )
     except OSError as e:
-        print(f"BŁĄD: Nie znaleziono pliku .so!\nSzczegóły: {e}")
-        print(
-            "Upewnij się, że biblioteki dynamiczne zostały poprawnie skompilowane w zad1, zad2 i zad3."
-        )
+        print(f"ERROR: Could not find .so file: {e}")
         return
 
     setupLib(lib_c, "c")
