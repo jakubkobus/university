@@ -1,0 +1,12 @@
+# compiled files
+*
+!*/
+!*.*
+
+# python
+.venv/
+
+# other
+results/
+out.txt
+sprawozdanie.txt
