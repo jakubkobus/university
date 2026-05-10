@@ -26,8 +26,6 @@ def plotRoute(filepath: str) -> None:
     )
 
     plt.title("Najlepsza wylosowana trasa")
-    plt.xlabel("Oś X")
-    plt.ylabel("Oś Y")
     plt.grid(True, linestyle="--", alpha=0.5)
     plt.legend()
 
