@@ -1,0 +1,11 @@
+# compiled files
+*
+!*/
+!*.*
+
+#ada
+*.ali
+*.o
+
+#java
+*.class
