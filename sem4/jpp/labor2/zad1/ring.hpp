@@ -2,6 +2,7 @@
 #define RING_HPP
 
 #include <stdexcept>
+#include <iostream>
 
 typedef long long ll_t;
 
@@ -19,7 +20,7 @@ private:
     return result;
   }
 
-  ll_t extended_gcd(ll_t a, ll_t b, ll_t &x, ll_t &y) const {
+  ll_t extendedGCD(ll_t a, ll_t b, ll_t &x, ll_t &y) const {
     if (b == 0) {
       x = 1;
       y = 0;
@@ -27,7 +28,7 @@ private:
     }
 
     ll_t x1, y1;
-    ll_t d = extended_gcd(b, a % b, x1, y1);
+    ll_t d = extendedGCD(b, a % b, x1, y1);
 
     x = y1;
     y = x1 - y1 * (a / b);
@@ -37,7 +38,7 @@ private:
 
   ll_t modInverse(ll_t a, ll_t m) const {
     ll_t x, y;
-    ll_t g = extended_gcd(a, m, x, y);
+    ll_t g = extendedGCD(a, m, x, y);
     if (g != 1) {
       throw std::domain_error(
           "Non-existent inverse element error: " + std::to_string(a) + "^(-1)"
@@ -83,48 +84,53 @@ public:
     return *this;
   }
 
-  friend Ring operator+(Ring lhs, const Ring &rhs) {
-    lhs += rhs;
-    return lhs;
+  Ring &operator+(const Ring &rhs) {
+    *this += rhs;
+    return *this;
   }
 
-  friend Ring operator-(Ring lhs, const Ring &rhs) {
-    lhs -= rhs;
-    return lhs;
+  Ring &operator-(const Ring &rhs) {
+    *this -= rhs;
+    return *this;
   }
 
-  friend Ring operator*(Ring lhs, const Ring &rhs) {
-    lhs *= rhs;
-    return lhs;
+  Ring &operator*(const Ring &rhs) {
+    *this *= rhs;
+    return *this;
   }
 
-  friend Ring operator/(Ring lhs, const Ring &rhs) {
-    lhs /= rhs;
-    return lhs;
+  Ring operator/(const Ring &rhs) {
+    *this /= rhs;
+    return *this;
   }
 
-  friend bool operator==(const Ring &lhs, const Ring &rhs) {
-    return lhs.value == rhs.value;
+  bool operator==(const Ring &rhs) const {
+    return this->value == rhs.value;
   }
 
-  friend bool operator!=(const Ring &lhs, const Ring &rhs) {
-    return lhs.value != rhs.value;
+  bool operator!=(const Ring &rhs) const {
+    return this->value != rhs.value;
   }
 
-  friend bool operator<(const Ring &lhs, const Ring &rhs) {
-    return lhs.value < rhs.value;
+  bool operator<(const Ring &rhs) const {
+    return this->value < rhs.value;
   }
 
-  friend bool operator>(const Ring &lhs, const Ring &rhs) {
-    return lhs.value > rhs.value;
+  bool operator>(const Ring &rhs) const {
+    return this->value > rhs.value;
   }
 
-  friend bool operator<=(const Ring &lhs, const Ring &rhs) {
-    return lhs.value <= rhs.value;
+  bool operator<=(const Ring &rhs) const {
+    return this->value <= rhs.value;
   }
 
-  friend bool operator>=(const Ring &lhs, const Ring &rhs) {
-    return lhs.value >= rhs.value;
+  bool operator>=(const Ring &rhs) const {
+    return this->value >= rhs.value;
+  }
+
+  friend std::ostream &operator<< (std::ostream &stream, const Ring &r) {
+    stream << r.value;
+    return stream;
   }
 };
 

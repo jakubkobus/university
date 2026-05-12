@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <exception>
+#include <iostream>
 
 #include "ring.hpp"
 
@@ -10,10 +11,12 @@ int main() {
     Ring<7> a = 10;
     Ring<7> b = -4;
 
+    std::cout << a << std::endl;
+
     printf("a = %lld\nb = %lld\n", a.get(), b.get());
     printf("a == b -> %s\n", (a == b ? "true" : "false"));
 
-    printf("a + b = %lld\n", (a + b).get());
+    printf("a + b = %lld\n", static_cast<ll_t>(a + b));
 
     printf("a * 5 = %lld\n", (a * 5).get());
 
