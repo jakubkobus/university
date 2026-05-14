@@ -132,7 +132,7 @@ void TS_BruteForce_Test(const std::vector<std::string> &files) {
 
           csv << file << "," << t << "," << i << "," << s << "," << avgLen << "," << globalBest << "\n";
           printf(
-            "[TS][%s] Tabu:%d | Iter:%d | Samp:%d -> Err: %.2f\n",
+            "[TS][%s] Tabu:%d | Iter:%d | Samp:%d -> avgLen: %.2f\n",
             file.c_str(), t, i, s, avgLen
           );
         }
