@@ -1,8 +1,7 @@
-*
-!*/
-!*.*
-
 .venv/
-results/
-analysis/
+bin/
 data/
+results/
+
+analysis/*.csv
+analysis/*.txt

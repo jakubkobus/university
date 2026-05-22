@@ -4,8 +4,8 @@
 #include <omp.h>
 #include <filesystem>
 
-#include "tsp.hpp"
-#include "algorithms.hpp"
+#include "includes/tsp.hpp"
+#include "includes/algorithms.hpp"
 
 void run(const std::string &filename, const std::string &algo, const int k);
 
@@ -44,13 +44,13 @@ void run(const std::string &filename, const std::string &algo, const int k) {
     .initialTemp = 1000.0,
     .alpha = 0.95,
     .epochs = 10000,
-    .stepsPerEpoch = n * 2
+    .stepsPerEpoch = 2 * n
   };
 
   const TS_Params bestParamsTS {
     .tabuSize = n / 20,
     .maxIterations = 10000,
-    .sampleSize = n * 2
+    .sampleSize = 2 * n
   };
 
   printf("\n--- %s | Algorithm: %s | Tries: %d ---\n", filename.c_str(), algo.c_str(), k);

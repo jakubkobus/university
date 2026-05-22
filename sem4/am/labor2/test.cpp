@@ -7,8 +7,8 @@
 #include <algorithm>
 #include <random>
 
-#include "tsp.hpp"
-#include "algorithms.hpp"
+#include "includes/tsp.hpp"
+#include "includes/algorithms.hpp"
 
 void SA_BruteForce_Test(const std::vector<std::string> &files);
 void TS_BruteForce_Test(const std::vector<std::string> &files);
