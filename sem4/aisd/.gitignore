@@ -2,12 +2,14 @@
 !*/
 !*.*
 !Makefile
+bin/
 
 .venv/
 
-csv/
 *.csv
 *.png
 results/
+plots/
+csv/
 
 sprawozdanie.log
