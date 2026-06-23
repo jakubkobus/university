@@ -1,7 +1,0 @@
-results/
-bin/
-data/
-.venv/
-*.pdf
-*.log
-.ipynb*

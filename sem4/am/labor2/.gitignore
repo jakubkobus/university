@@ -1,7 +1,0 @@
-.venv/
-bin/
-data/
-results/
-
-analysis/*.csv
-analysis/*.txt
