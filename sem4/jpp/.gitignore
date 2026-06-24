@@ -1,0 +1,17 @@
+*
+!*/
+!*.*
+!Makefile
+
+bin/
+target/
+
+*.a
+*.so
+b~*
+*.ali
+*.class
+*.cmi
+*.cmx
+*.hi
+*.o
